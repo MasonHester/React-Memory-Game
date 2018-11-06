@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import images from "./images.json";
-import Image from "./components/Images"
+import Scoreboard from "./components/Scoreboard";
+import Image from "./components/Images";
 
 class App extends Component {
 
@@ -11,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="container-fluid">
-        {/* <Image key="imagesKey" images={this.state.signs}/> */}
+        <Scoreboard />
         <div className="row">
         {this.state.signs.map(sign => (
           <Image id={sign.id} key={sign.id} src={sign.image} alt={sign.name} />
