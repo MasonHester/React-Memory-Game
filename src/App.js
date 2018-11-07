@@ -8,7 +8,8 @@ class App extends Component {
   state = {
     signs: images,
     clickedImages: [],
-    currentScore: 0
+    currentScore: 0,
+    bestScore: 0
   }
 
   handleScoreChange = (userGuess, id) => {
@@ -17,7 +18,8 @@ class App extends Component {
       this.setState({
         signs: images,
         clickedImages: [...this.state.clickedImages, id],
-        currentScore: score
+        currentScore: score,
+        bestScore: score > this.state.bestScore ? score : this.state.bestScore 
       })
     } else {
       this.setState({
@@ -49,10 +51,10 @@ class App extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Scoreboard current={this.state.currentScore} />
+        <Scoreboard current={this.state.currentScore} best={this.state.bestScore} />
         <div className="row">
           {this.state.signs.map(sign => (
-            <Image id={sign.id} key={sign.id} src={sign.image} alt={sign.name} handleClick={this.handleClick}/>
+            <Image id={sign.id} key={sign.id} src={sign.image} alt={sign.name} handleClick={this.handleClick} />
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@ const Scoreboard = props => (
         </div>
 
         <div className="col s4 offset-s2">
-            <h1>2</h1>
+            <h1>{props.best}</h1>
         </div>
     </div>
 );
