@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import images from "./images.json";
 import Scoreboard from "./components/Scoreboard";
 import Image from "./components/Images";
+import "./index.css"
 
 class App extends Component {
 
@@ -13,32 +14,34 @@ class App extends Component {
   }
 
   shuffleImages = () => {
-    let shuffledArray = this.state.signs;
-    let counter = this.state.signs.length;
+    // Old Shuffle
+    //=================================================================
+
+    // let shuffledArray = this.state.signs;
+    // let counter = this.state.signs.length;
     
 
-    while (counter > 0) {
-        console.log(`==============${counter}==============`);
-        const randomIndex = Math.floor(Math.random() * counter);
+    // while (counter > 0) {
+    //     const randomIndex = Math.floor(Math.random() * counter);
 
-        counter = counter - 1;
+    //     counter = counter - 1;
 
-        let dataForSwap = shuffledArray[counter];
-        console.log(`Data for swap: ${dataForSwap}`);
-        console.log(`Before Swap: ${shuffledArray}`);
-        shuffledArray[counter] = shuffledArray[randomIndex];
-        console.log(`Mid Swap: ${shuffledArray}`);
-        shuffledArray[randomIndex] = dataForSwap;
-        console.log(`After Swap: ${shuffledArray}`);
-    };
+    //     let dataForSwap = shuffledArray[counter];
+    //     shuffledArray[counter] = shuffledArray[randomIndex];
+    //     shuffledArray[randomIndex] = dataForSwap;
+    // };
 
-    return shuffledArray
+    // return shuffledArray
+
+    //=================================================================
+
+    // New shuffle (Provided by Joshua Lebeouf https://github.com/HumanJBooF)
+
+    const shuffledArray = this.state.signs.map(a => [Math.random(), a])
+        .sort((a, b) => a[0] - b[0])
+        .map(a => a[1]);
+    return shuffledArray;
   };
-
-  // const shuffleData = (shuffledArray) => {
-//     
-// };
-
 
   handleScoreChange = (userGuess, id) => {
     if (userGuess === true) {
@@ -56,8 +59,6 @@ class App extends Component {
         currentScore: 0
       })
     }
-
-    
 
     if (this.state.clickedImages.length >= this.state.signs.length) {
       console.log("win")

@@ -1,0 +1,8 @@
+div.scoreBoard {
+    background: #cccccc;
+}
+
+div.currentScore, div.highScore {
+    background: #999999;
+    text-align: center;
+}
